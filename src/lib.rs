@@ -8,6 +8,8 @@
 //! assert_eq!(get_canonical_combining_class('ཱ'), CanonicalCombiningClass::CCC129);
 //! ```
 
+#![no_std]
+
 mod canonical_combining_class;
 mod tables;
 
