@@ -5,9 +5,9 @@
 // Unicode version: 14.0.0.
 //
 // yeslogic-ucd-generate is available on GitHub:
-// https://github.com/yeslogic/ucd-generate/tree/3b21e76
+// https://github.com/yeslogic/ucd-generate/tree/5460a89
 
-#[derive(Clone, Copy, Debug, Hash, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub enum CanonicalCombiningClass {
     NotReordered = 0,
     Overlay = 1,
