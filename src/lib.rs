@@ -13,7 +13,9 @@
 mod canonical_combining_class;
 mod tables;
 
-pub use canonical_combining_class::get_canonical_combining_class;
+pub use canonical_combining_class::{
+    get_canonical_combining_class, get_canonical_combining_class_u32,
+};
 pub use tables::CanonicalCombiningClass;
 
 /// The version of [Unicode](http://www.unicode.org/)
@@ -22,7 +24,9 @@ pub const UNICODE_VERSION: (u64, u64, u64) = (14, 0, 0);
 
 #[cfg(test)]
 mod test {
-    use super::{get_canonical_combining_class, CanonicalCombiningClass};
+    use super::{
+        get_canonical_combining_class, get_canonical_combining_class_u32, CanonicalCombiningClass,
+    };
 
     #[test]
     fn test_get_canonical_combining_class() {
@@ -72,6 +76,58 @@ mod test {
         );
         assert_eq!(
             get_canonical_combining_class('\u{1259}'),
+            CanonicalCombiningClass::NotReordered
+        );
+    }
+
+    #[test]
+    fn test_get_canonical_combining_class_u32() {
+        assert_eq!(
+            get_canonical_combining_class_u32(0x05B0),
+            CanonicalCombiningClass::CCC10
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x08F0),
+            CanonicalCombiningClass::CCC27
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x0670),
+            CanonicalCombiningClass::CCC35
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x0E39),
+            CanonicalCombiningClass::CCC103
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x0E48),
+            CanonicalCombiningClass::CCC107
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x1DCE),
+            CanonicalCombiningClass::AttachedAbove
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x0F39),
+            CanonicalCombiningClass::AttachedAboveRight
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x0359),
+            CanonicalCombiningClass::Below
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x1939),
+            CanonicalCombiningClass::BelowRight
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0xABED),
+            CanonicalCombiningClass::Virama
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x081A),
+            CanonicalCombiningClass::NotReordered
+        );
+        assert_eq!(
+            get_canonical_combining_class_u32(0x1259),
             CanonicalCombiningClass::NotReordered
         );
     }
