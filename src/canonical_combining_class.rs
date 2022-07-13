@@ -31,7 +31,7 @@ pub fn get_canonical_combining_class(chr: char) -> CanonicalCombiningClass {
 ///
 /// ```
 /// use unicode_canonical_combining_class::{
-///   get_canonical_combining_class_u32, CanonicalCombiningClass
+///     get_canonical_combining_class_u32, CanonicalCombiningClass,
 /// };
 ///
 /// assert_eq!(get_canonical_combining_class_u32(0x0F72), CanonicalCombiningClass::CCC130);
