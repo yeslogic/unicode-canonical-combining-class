@@ -13,8 +13,22 @@ const SHIFT: usize = MASK.count_ones() as usize;
 /// assert_eq!(get_canonical_combining_class('ི'), CanonicalCombiningClass::CCC130);
 /// ```
 pub fn get_canonical_combining_class(chr: char) -> CanonicalCombiningClass {
-    let u = chr as u32;
+    get_canonical_combining_class_u32(chr as u32)
+}
 
+/// Look up the canonical combining class for the character represented by a `u32` value. If there
+/// is no such character, the default combining class, `NotReordered` (`== 0`), will be returned.
+///
+/// ### Example
+///
+/// ```
+/// use unicode_canonical_combining_class::{
+///     get_canonical_combining_class_u32, CanonicalCombiningClass,
+/// };
+///
+/// assert_eq!(get_canonical_combining_class_u32(0x0F72), CanonicalCombiningClass::CCC130);
+/// ```
+pub fn get_canonical_combining_class_u32(u: u32) -> CanonicalCombiningClass {
     if u <= LAST_CODEPOINT {
         CANONICAL_COMBINING_CLASS_BLOCKS[CANONICAL_COMBINING_CLASS_BLOCK_OFFSETS
             [u as usize >> SHIFT] as usize
