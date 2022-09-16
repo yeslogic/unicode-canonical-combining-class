@@ -10,7 +10,7 @@ unicode-canonical-combining-class
   <a href="https://crates.io/crates/unicode-canonical-combining-class">
     <img src="https://img.shields.io/crates/v/unicode-canonical-combining-class.svg" alt="Version">
   </a>
-  <img src="https://img.shields.io/badge/unicode-14.0-informational" alt="Unicode Version">
+  <img src="https://img.shields.io/badge/unicode-15.0-informational" alt="Unicode Version">
   <a href="https://github.com/yeslogic/unicode-canonical-combining-class/blob/master/LICENSE">
     <img src="https://img.shields.io/crates/l/unicode-canonical-combining-class.svg" alt="License">
   </a>
@@ -19,7 +19,7 @@ unicode-canonical-combining-class
 <br>
 
 Fast lookup of the Unicode Canonical Combining Class property for `char`
-in Rust using Unicode 14.0 data. This crate is no-std compatible.
+in Rust using Unicode 15.0 data. This crate is no-std compatible.
 
 Usage
 -----
