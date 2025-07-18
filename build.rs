@@ -90,7 +90,7 @@ fn write_table(path: &Path, compiled_table: &CompiledTable) {
     // Write out the blocks in address order
     writeln!(
         output,
-        "\nconst CANONICAL_COMBINING_CLASS_BLOCKS: [CanonicalCombiningClass; {}] = [",
+        "\nstatic CANONICAL_COMBINING_CLASS_BLOCKS: [CanonicalCombiningClass; {}] = [",
         compiled_table.blocks.len() * block::SIZE
     )
     .unwrap();
