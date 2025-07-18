@@ -72,9 +72,10 @@ fn compile_table() -> CompiledTable {
     }
 }
 
+#[allow(clippy::uninlined_format_args)]
 fn write_table(path: &Path, compiled_table: &CompiledTable) {
     let mut output =
-        File::create(&path).expect(&format!("unable to open {}", path.to_string_lossy()));
+        File::create(path).unwrap_or_else(|_| panic!("unable to open {}", path.to_string_lossy()));
 
     writeln!(output, "use crate::CanonicalCombiningClass;").unwrap();
     writeln!(output, "use crate::CanonicalCombiningClass::*;").unwrap();
@@ -90,7 +91,7 @@ fn write_table(path: &Path, compiled_table: &CompiledTable) {
     // Write out the blocks in address order
     writeln!(
         output,
-        "\nconst CANONICAL_COMBINING_CLASS_BLOCKS: [CanonicalCombiningClass; {}] = [",
+        "\nstatic CANONICAL_COMBINING_CLASS_BLOCKS: [CanonicalCombiningClass; {}] = [",
         compiled_table.blocks.len() * block::SIZE
     )
     .unwrap();
@@ -161,24 +162,20 @@ mod block {
     use std::ops::{Index, IndexMut};
 
     /// A fixed size block
-    ///
-    /// Ideally this would be an array but that doesn't work until const generics are stabilised
     #[derive(Debug, PartialEq, Eq, Hash, Clone)]
     pub struct Block {
-        data: Vec<CanonicalCombiningClass>,
+        data: [CanonicalCombiningClass; SIZE],
     }
 
     impl Block {
         pub fn new() -> Self {
             Block {
-                data: vec![CanonicalCombiningClass::NotReordered; SIZE],
+                data: [CanonicalCombiningClass::NotReordered; SIZE],
             }
         }
 
         pub fn reset(&mut self) {
-            self.data
-                .iter_mut()
-                .for_each(|val| *val = CanonicalCombiningClass::NotReordered);
+            self.data.fill(CanonicalCombiningClass::NotReordered);
         }
 
         pub fn iter(&self) -> impl Iterator<Item = &CanonicalCombiningClass> {
@@ -196,7 +193,7 @@ mod block {
 
     impl IndexMut<usize> for Block {
         fn index_mut(&mut self, index: usize) -> &mut Self::Output {
-            self.data.index_mut(index)
+            &mut self.data[index]
         }
     }
 }
