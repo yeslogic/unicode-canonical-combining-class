@@ -72,9 +72,10 @@ fn compile_table() -> CompiledTable {
     }
 }
 
+#[allow(clippy::uninlined_format_args)]
 fn write_table(path: &Path, compiled_table: &CompiledTable) {
     let mut output =
-        File::create(&path).expect(&format!("unable to open {}", path.to_string_lossy()));
+        File::create(path).unwrap_or_else(|_| panic!("unable to open {}", path.to_string_lossy()));
 
     writeln!(output, "use crate::CanonicalCombiningClass;").unwrap();
     writeln!(output, "use crate::CanonicalCombiningClass::*;").unwrap();
