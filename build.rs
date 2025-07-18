@@ -161,24 +161,20 @@ mod block {
     use std::ops::{Index, IndexMut};
 
     /// A fixed size block
-    ///
-    /// Ideally this would be an array but that doesn't work until const generics are stabilised
     #[derive(Debug, PartialEq, Eq, Hash, Clone)]
     pub struct Block {
-        data: Vec<CanonicalCombiningClass>,
+        data: [CanonicalCombiningClass; SIZE],
     }
 
     impl Block {
         pub fn new() -> Self {
             Block {
-                data: vec![CanonicalCombiningClass::NotReordered; SIZE],
+                data: [CanonicalCombiningClass::NotReordered; SIZE],
             }
         }
 
         pub fn reset(&mut self) {
-            self.data
-                .iter_mut()
-                .for_each(|val| *val = CanonicalCombiningClass::NotReordered);
+            self.data.fill(CanonicalCombiningClass::NotReordered);
         }
 
         pub fn iter(&self) -> impl Iterator<Item = &CanonicalCombiningClass> {
@@ -196,7 +192,7 @@ mod block {
 
     impl IndexMut<usize> for Block {
         fn index_mut(&mut self, index: usize) -> &mut Self::Output {
-            self.data.index_mut(index)
+            &mut self.data[index]
         }
     }
 }
