@@ -5,15 +5,12 @@ unicode-canonical-combining-class
   <a href="https://github.com/yeslogic/unicode-canonical-combining-class/actions/workflows/ci.yml">
     <img src="https://github.com/yeslogic/unicode-canonical-combining-class/actions/workflows/ci.yml/badge.svg" alt="Build Status"></a>
   <a href="https://docs.rs/unicode-canonical-combining-class">
-    <img src="https://docs.rs/unicode-canonical-combining-class/badge.svg" alt="Documentation">
-  </a>
+    <img src="https://docs.rs/unicode-canonical-combining-class/badge.svg" alt="Documentation"></a>
   <a href="https://crates.io/crates/unicode-canonical-combining-class">
-    <img src="https://img.shields.io/crates/v/unicode-canonical-combining-class.svg" alt="Version">
-  </a>
+    <img src="https://img.shields.io/crates/v/unicode-canonical-combining-class.svg" alt="Version"></a>
   <img src="https://img.shields.io/badge/unicode-16.0-informational" alt="Unicode Version">
   <a href="https://github.com/yeslogic/unicode-canonical-combining-class/blob/master/LICENSE">
-    <img src="https://img.shields.io/crates/l/unicode-canonical-combining-class.svg" alt="License">
-  </a>
+    <img src="https://img.shields.io/crates/l/unicode-canonical-combining-class.svg" alt="License"></a>
 </div>
 
 <br>
